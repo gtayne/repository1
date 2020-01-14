@@ -1,0 +1,106 @@
+# class Bird:
+#     def __init__(self,neck = "long"):
+#         Bird.neck = neck
+#         print(neck)
+#         print(Bird.neck)
+#     def fly(self,neck):
+#         print("鸟的脖子是" + self.neck + "\n" + Bird.neck + "\n" + neck)
+# class Sparrow(Bird):
+#     def __init__(self,neck):
+#         print("我是麻雀")
+#     def fly(self,neck):
+#         self.neck = neck
+#         print("麻雀的脖子是" + neck + "\n" + self.neck)
+# sprraw = Sparrow("very_long")
+# sprraw.fly("natural_long")
+# print(Bird.neck)
+#
+'''实例一设置默认语言'''
+class Mobie:
+    def __init__(self,language = "英文"):
+        self.language = language
+        print("手机的默认语言为" + self.language)
+    def setlanguage(self,language):
+        self.language = language
+        print("手机的默认语言已经被设置为" + self.language)
+mobie = Mobie()
+l = str(input("请输入想要设置的语言"))
+mobie.setlanguage(l)
+'''实例二设置密码'''
+class Credit:
+    def __init__(self,number,password = "123456"):
+        self.number = number
+        self.password = password
+        print("当前账号为"+self.number)
+        print("\n当前密码为" + self.password)
+n = str(input("请输入账号"))
+choose = str(input("是否使用默认密码？输入Y/N"))
+if choose is "Y":
+    credit = Credit(n)
+elif choose is "N":
+    set_password = str(input("请输入想要更改的密码"))
+    credit = Credit(n,set_password)
+else:
+    print("请输入Y/N中的一项")
+# '''实例三打印明细'''
+class Sale:
+    def __init__(self,month):
+        self.month = month
+        commodity = [['T0001', '笔记本电脑'],
+                     ['T0002', '华为荣耀6X'],
+                     ['T0003', 'iPad'],
+                     ['T0004', '华为荣耀V9'],
+                     ['T0005', 'MacBock']]
+        def show_detial(month):
+            str_month = str(month)
+            print(str_month + "月份的销售明细如下:\n")
+            for i in range(5):  ###行
+                for j in range(2):  ###列
+                    if j == 1:
+                        print("\t型号" + commodity[i][j])
+                    else:
+                        print("编号" + commodity[i][j], end="")
+        if month in range(4):
+            show_detial(month)
+        else:
+            print("该月份无销售数据或输入月份有误")
+M = int(input("请输入要查询的月份,比如1,2,3等："))
+sale_serach = Sale(M)
+
+'''实例四自动售票机 '''
+class Ticket:
+    list_movie = ['环太平洋','头号玩家','红海行动']
+    list_seat = ['10-01','10-02','10-03','10-04']
+    list_time = ['9:30','10:40','12:00']
+    def __init__(self):
+        list_time = Ticket.list_time
+        list_movie = Ticket.list_movie
+        list_seat = Ticket.list_seat
+        print("请选择正在上映的电影:\n 1.环太平洋 \n 2.头号玩家 \n 3.红海行动 \n")
+        num = int(input("请输入要选择的电影"))
+        if num in range(0,4):
+            print("已选电影" + list_movie[num-1])
+            print("请选择电影播放场次：\n1.9:30\n2.10:40\n3.12:00\n")
+            time = int(input("输入序号1-3"))
+            if time in range(0,4):
+                print("已选场次" + list_time[time-1])
+                print("座位有")
+                for index, item in enumerate(list_seat):
+                    print(index + 1, item)
+                print("请输入要选择的座位")
+                seat = int(input("请输入序号1-4中的一个"))
+                if seat in range(5):
+                    print("您已经选择座位" + list_seat[seat - 1])
+                    del list_seat[seat - 1]
+                    #print("还剩下座位",list_seat)
+                else:
+                    print("输入的序号有误")
+                    ticket = Ticket()
+            else:
+                print("输入的序号有误")
+                ticket = Ticket()
+        else:
+            print("输入的序号有误")
+            ticket = Ticket
+ticket = Ticket()
+print("还剩下座位",ticket.list_seat)  ###list_seat为类参数
